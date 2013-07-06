@@ -1,0 +1,315 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"book",
+				"book_id"
+			],
+			[
+				"DB_",
+				"DB_NAME"
+			],
+			[
+				"DB",
+				"DB_USER"
+			],
+			[
+				"php",
+				"php"
+			],
+			[
+				"xb",
+				"xbrl"
+			],
+			[
+				"getCountry",
+				"getCountryDataRangeHandler"
+			],
+			[
+				"country",
+				"country"
+			],
+			[
+				"random",
+				"randomList"
+			],
+			[
+				"rando",
+				"randomList"
+			],
+			[
+				"B",
+				"books_per_subject"
+			],
+			[
+				"output",
+				"outputDecoded"
+			],
+			[
+				"books",
+				"books_per_subject"
+			],
+			[
+				"boo",
+				"books_per_subject"
+			],
+			[
+				"return",
+				"return_skills"
+			],
+			[
+				"cha",
+				"char_array"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"pack ins",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/backend/bmj",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/reset-pwd-link-sent.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/thank-you.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/resetpwd.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/thank-you-regd.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/logout.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/confirmreg.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/login-home.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/include/fg_membersite.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/register.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/_library.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/_carousel.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/reset-pwd-req.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/include/class.phpmailer.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/change-pwd.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/changed-pwd.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/_catalogue.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/assets/css/ren.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/changed-pwd.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/backup/orig/thank-you.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/thank-you.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/style/pwdwidget.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/style/fg_membersite.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/scripts/pwdwidget.js",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/_help.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/thank-you-regd.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/assets/css/carouselren.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/assets/css/bootstrap.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/backend/list.csv",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/www/_functions.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/backend/dbcreate.sql",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/_functions.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/_library.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/register.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/oldindex.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/_catalogue.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/_carousel.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/orig/index.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/footer.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/assets/css/carouselren.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/style/carouselren.css",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/access-controlled.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/orig/logout.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/orig/_library.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/orig/_carousel.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/source/logout.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/RegistrationForm/login.php",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/signin.html",
+		"/Users/puntofisso/Dropbox/DEV/Ren/bootstrap/carousel.php",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/api/index.php",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/docs/ashe.json",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/docs/resources.json",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/docs/root.json",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/api/resources.json",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/api/testmongo.php",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/api/api.php",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/api/config.php",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/docs/index.html",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/docs/robots.txt",
+		"/Users/puntofisso/Dropbox/DEV/followthedata/.gitignore",
+		"/Users/puntofisso/Dropbox/DEV/lmiforall/backend/api.php",
+		"/Users/puntofisso/Dropbox/DEV/lmiforall/.gitignore"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"username",
+			"SendUserConfirmationEmail",
+			"GetSelfScript",
+			"Wrong",
+			"thank-",
+			"SendUserConfirmation",
+			"container",
+			"label",
+			"Mask",
+			"Generate",
+			"print",
+			"error",
+			"register",
+			"height",
+			"line-height",
+			"container",
+			"em",
+			"nav",
+			"collapse",
+			"Insieme",
+			"$username",
+			"GetLoginSession",
+			"usr_",
+			"Flavia",
+			"0,00",
+			"\"0,00\"",
+			"            ",
+			"username",
+			"name",
+			"../../assets",
+			"../assets",
+			"DB",
+			"../assets",
+			"short_explana",
+			"assets",
+			"../../../",
+			"assets",
+			"../../",
+			"estimate",
+			"/assets",
+			"../assets",
+			"png",
+			"Project name",
+			"var_dump",
+			"echo"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"0.00",
+			"",
+			"./assets",
+			"../../assets",
+			"../../../../assets",
+			"../../../assets",
+			"../../../",
+			"assets"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 193.0,
+	"status_bar_visible": true
+}
