@@ -3,11 +3,11 @@ RS-BMJHackDay
 
 Rewired State - British Medical Journal Hack Day by
 
-* Giuseppe Sollazzo (@puntofisso)
-* Jon Hilton (@jonjhilton)
-* Daniel Inniss (@danielinniss)
-* Kush Depala (@kush_depala)
-* Kaelan Fouwels (@kfouwels)
+* Giuseppe Sollazzo [@puntofisso](http://twitter.com/puntofisso)
+* Jon Hilton [@jonjhilton](http://twitter.com/jonjhilton)
+* Daniel Inniss [@danielinniss](http://twitter.com/danielinniss)
+* Kush Depala [@kush_depala](http://twitter.com/kush_depala)
+* Kaelan Fouwels [@kfouwels](http://twitter.com/kfouwels)
 
 Instructions
 ============
