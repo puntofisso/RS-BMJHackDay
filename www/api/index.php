@@ -68,7 +68,7 @@ class UserStatsHandler {
     }
 }
 
-class QuestionsHandler {
+class QuestionsOldHandler {
     function get($catname,$username,$level) {
 
     	$limit = "";
@@ -162,6 +162,87 @@ class QuestionsHandler {
 }
 
 
+class QuestionsHandler {
+    function get($catname,$username,$level) {
+
+
+
+    	$query = "";
+     	if ($catname == "all") {
+     		$query = "SELECT q.* from questions q where q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore desc LIMIT 0,10;";
+  		} else {
+  			$query = "SELECT q.* from questions q where q.FriendlyName='$catname' and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore desc LIMIT 0,10;";
+  		}
+
+  		$result = mySQLquery($query);
+  		$out = array();
+
+
+  			while($row = mysql_fetch_assoc( $result )) {
+  				$thisout=array();
+		 		$thisout['qid'] = $row['QID'];
+		 		$thisout['category'] = $row['FriendlyName'];
+		 		$xml = $row['XML'];
+
+		 		// Extract XML
+		 		$dom = new DOMDocument;
+				$dom->loadXML($xml);
+
+				$scoreIsPresent = FALSE;
+				// question
+				$qText = $dom->getElementsByTagName('qTxt');
+				$string = "";	
+				foreach ($qText as $question) {
+    				foreach($question->childNodes as $child) {
+        				if ($child->nodeType == XML_CDATA_SECTION_NODE) {
+            				$string = $string . $child->textContent;
+        				}
+    				}
+				}
+				$thisout['question'] = strip_tags($string);
+
+				// answers
+				$opts = $dom->getElementsByTagName('o');
+				$optsArray = array();
+				foreach ($opts as $opt) {
+					$thisScore = array();
+					$thisScore['score'] = $opt->getAttribute('score');
+					
+					if ($thisScore['score'] <> "")
+						$scoreIsPresent = TRUE;
+
+					$optiontext = $opt->getElementsByTagName('oTxt');
+					$optionstring = "";
+					foreach ($optiontext as $text) {
+    					foreach($text->childNodes as $child) {
+        					if ($child->nodeType == XML_CDATA_SECTION_NODE) {
+            					$optionstring = $optionstring . $child->textContent;
+        					}
+    					}
+					}
+					$thisScore['option'] = strip_tags($optionstring);
+					$optsArray[] = $thisScore;
+				}
+
+				$thisout['answers'] = $optsArray;
+
+		 		//$thisout['xml'] = $row['XML'];
+		 		if (!$scoreIsPresent)
+		 			$thisout['flag'] = 'noscore';
+		 		else
+		 			$thisout['flag'] = 'score';
+
+		 		$out[] = $thisout;
+			}
+			header('Access-Control-Allow-Origin: *');
+	    	echo json_encode($out);
+	    
+    }
+}
+
+
+
+
 class CategoriesHandler {
     function get($count) {
     	if ($count == "all") {
@@ -231,6 +312,7 @@ Toro::serve(array(
     "/test" => "TestHandler",
     "/userstats/:string" => "UserStatsHandler",
     "/questions/:string/:string/:alpha" => "QuestionsHandler",
+    "/questionsOld/:string/:string/:alpha" => "QuestionsOldHandler",
     "/categories/:alpha" => "CategoriesHandler",
     "/leaderboard" => "LeaderboardHandler",
     "/updateuserpoints/:string/:alpha" => "UserPointsHandler",

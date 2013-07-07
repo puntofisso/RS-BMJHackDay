@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<title>
+			FSO
+		</title>
+
+		<style>
+		@import url(style.css);
+		</style>
+	</head>
+
+	<body>
+		<!--This container is the big field-->
+		<div class="bigContainer">
+		
+			<!--Two big links are here-->
+			<a href="question.html" id="question">Questions</a>
+			<a href="main.html" id="stats">Stats</a>
+
+
+
+			<!--the three stats scores are here-->
+			<div class = "container">
+				<div class="stat" id="points">
+					<div class="box">80</div>
+				</div>
+				<div class="stat" id="percent">
+					<div class="box">71%</div>
+				</div>
+				<div class="stat" id="level">
+					<div class="box">Level 8</div>
+				</div>
+			</div>
+			
+	</div>
+		
+		</div>
+
+		<!--This container is the field on the right labelled friends-->
+				<div class="smallContainer">
+<div id="wrapper">
+			<div id="profilePic">
+			<img src="maskpic.png"> </img>
+			</div>
+			<div id="friend-list">
+			<div id="name"><p>Edward Jenner</p></div>
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+		</div>
+			<div class="optionButton">Settings</br>Help</br>Log Out</div>
+		</div> </div>
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				//load user data
+				points = $("div#points .box")
+				percent = $("div#percent .box")
+				level  =  $("div#level .box")
+				loadUserDetails("edjenner")
+				loadLeaderBoard()
+
+				function loadUserDetails(username){
+					jQuery.getJSON( "http://172.16.63.151:8888/api/index.php/userstats/" + username, function(user){
+						points.text(user.points)
+						percent.text(user.percentcorrect * 100 + "%")
+						level.text(user.level)
+					})
+				}
+function loadLeaderBoard(){
+					jQuery.getJSON( "http://172.16.63.151:8888/api/index.php/leaderboard/", function(leaderboard){
+						leader = ''
+						$.each(leaderboard,function(i,o){
+							leader += '<div class="friendBox"><div class="friendName">' + o.fullname +'</div><div class="friendPoints">' + o.points + '</div></div>'
+						})
+						$("#friend-list").html(leader)
+					})
+				}
+				
+
+			})
+		</script>
+	</body>
+</html>

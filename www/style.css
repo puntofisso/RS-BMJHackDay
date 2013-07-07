@@ -1,0 +1,212 @@
+body {
+	font-family: 'Oswald', sans-serif;
+	width:100%;
+	margin:auto;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {color:#000000;}
+
+a:visited {color:#000000;}
+
+a:hover {color:#2e3192;}
+
+#iconContainer{
+	width:20%;
+	height:800px;
+	float:left;
+}
+
+.icon {
+	width:33.33%;
+	margin:auto;
+	float:left;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.bigContainer {
+	width:80%;
+	min-height:800px;
+	background-color:#0172BA;
+	float:left;
+}
+
+#stats {
+	width:50%;
+	height:100px;
+	float:right;
+	font-size: 50pt;
+	text-align: center;
+	background-color: #0172ba;
+}
+
+#question {
+	width:50%;
+	height:100px;
+	float:left;
+	background-color:#53b3d0;
+	font-size: 50pt;
+	text-align: center;
+}
+
+.smallContainer {
+	width:20%;
+	height:810px;
+	float:right;
+	background-color: #cccccc;
+}
+
+#wrapper {
+	width:inherit;
+}
+
+.stat {
+	width:21%;
+	height:150px;
+	margin:auto;
+	float:left;
+}
+
+.box {
+	width:120px;
+	height:120px;
+	margin:auto;
+	background-color: #f7c356;
+	border-style: solid;
+	border-color: #344b50;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.bigBreak {
+	width:100%;
+	height:170px;
+}
+
+
+
+
+#holder {
+	width:70%;
+	margin:auto;
+}
+
+.prize {
+	width:30%;
+	height:50px;
+	float:left;
+	margin:auto;
+}
+
+.reward {
+	width: 30px;
+	height:30px;
+}
+
+.container {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.level {
+	width:15%; 
+	margin:auto; 
+	float:left;
+	text-align: center;
+}
+
+.boxY {
+	width:90px;
+	height:90px;
+	margin:auto;
+	padding:3px;
+	background-image: url('blueBadge.png');
+	margin-bottom: 80px;
+	font-size: 24pt;
+}
+
+.boxN {
+	width:90px;
+	height:90px;
+	margin:auto;
+	padding:3px;
+	background-image: url('redBadge.png');
+	margin-bottom: 80px;
+	font-size: 24pt;
+}
+
+#what {
+	width:80%;
+	margin: auto;
+	height:350px;
+	overflow: scroll;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	text-align: center;
+	background-color: #0974c1;
+}
+
+button {
+	width:20%;
+	margin: auto;
+	float:left;
+	height:100px;
+}
+
+img {
+			width:70%;
+			margin:auto;
+			float:left;
+		}
+
+		#wrapper {
+			width:100%;
+			height:810px;
+			background-color: darkgrey;
+		}
+
+		#name {
+			width:100%;
+			float:left;
+			margin: auto;
+			background-color: blue;
+			height:30px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 10pt;
+			text-align: center;
+		}
+
+		.friendBox {
+			width:100%;
+			height:70px;
+			float:left;
+			margin:auto;
+			background-color: skyblue;
+			margin-bottom: 10px;
+		}
+
+		.friendName {
+			width:70%;
+			float:left;
+		}
+
+		#profilePic {
+			width:100%;
+			height:250px;
+
+		}
+
+		.friendPoints {
+			width:30%;
+			float:right;
+		}
+
+		.optionButton {
+			float:right;
+			margin-top: 20px;
+		}

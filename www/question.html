@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<title>
+			FSO
+		</title>
+
+		<style>
+		@import url(style.css);
+			.bigContainer {background-color: #53b3d0}
+		</style>
+	</head>
+
+	<body>
+		<!--This container is the big field-->
+		<div class="bigContainer">
+		
+			<!--Two big links are here-->
+			<a href="question.html" id="question"> Questions </a>
+			<a href="main.html" id="stats"> Stats </a>
+
+		
+
+			<div id="iconContainer">
+				<div class="icon"><img src="icons/cardio.png"/></div>
+				<div class="icon"><img src="icons/resp.png"/></div>
+				<div class="icon"><img src="icons/data.png"/></div>
+				<div class="icon"><img src="icons/derm.png"/></div>
+				<div class="icon"><img src="icons/download.png"/></div>
+				<div class="icon"><img src="icons/emerg.png"/></div>
+				<div class="icon"><img src="icons/endo.png"/></div>
+				<div class="icon"><img src="icons/ent.png"/></div>
+				<div class="icon"><img src="icons/exams.png"/></div>
+				<div class="icon"><img src="icons/gastro.png"/></div>
+				<div class="icon"><img src="icons/genuro.png"/></div>
+				<div class="icon"><img src="icons/haem.png"/></div>
+				<div class="icon"><img src="icons/infect.png"/></div>
+				<div class="icon"><img src="icons/neuro.png"/></div>
+				<div id="obsgynae"class="icon"><img src="icons/obs.png"/></div>
+				<div class="icon"><img src="icons/oph.png"/></div>
+				<div class="icon"><img src="icons/ortho.png"/></div>
+				<div class="icon"><img src="icons/paeds.png"/></div>
+				<div class="icon"><img src="icons/psych.png"/></div>
+				<div class="icon"><img src="icons/scoring.png"/></div>
+				<div class="icon"><img src="icons/skills.png"/></div>
+			</div>
+
+			<!--content of scores needed here-->
+				<div class="bigBreak">
+					<div class="stat" id="points">
+					<div class="box">80</div>
+				</div>
+				<div class="stat" id="percent">
+					<div class="box">71%</div>
+				</div>
+				<div class="stat" id="level">
+					<div class="box">Level 8</div>
+				</div>
+				</div>
+
+			<!--level tree thing... needs sorting-->
+		<div class="bigBreak"></div>
+			<div class="level"><a id="levelOne" href="play.html#1"><div class="boxi"> 1 </div></a></div>
+			<div class="level"><div class="boxi"> 2 </div></div>
+			<div class="level"><div class="boxi"> 3 </div></div>
+			<div class="level"><div class="boxi"> 4 </div></div>
+			<div class="level"><div class="boxi"> 5 </div></div>
+
+		</div>
+
+		<!--This container is the field on the right labelled friends-->
+				<div class="smallContainer">
+<div id="wrapper">
+			<div id="profilePic">
+			<img src="maskpic.png"> </img>
+			</div>
+			<div id="friend-list">
+			<div id="name"><p>Edward Jenner</p></div>
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+		</div>
+			<div class="optionButton">Settings</br>Help</br>Log Out</div>
+		</div> </div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				//load user data
+				points = $("div#points .box")
+				percent = $("div#percent .box")
+				level  =  $("div#level .box")
+				loadUserDetails("edjenner")
+				loadLeaderBoard()
+
+				function loadUserDetails(username){
+					jQuery.getJSON( "http://172.16.63.151:8888/api/index.php/userstats/" + username, function(user){
+						points.text(user.points)
+						percent.text(user.percentcorrect * 100 + "%")
+						level.text(user.level)
+					})
+				}
+
+				$("div#obsgynae").on("click", function(){
+					$("a#levelOne").attr("href","play.html#1#obsgynae")
+				})
+
+				function loadLeaderBoard(){
+					jQuery.getJSON( "http://172.16.63.151:8888/api/index.php/leaderboard/", function(leaderboard){
+						leader = ''
+						$.each(leaderboard,function(i,o){
+							leader += '<div class="friendBox"><div class="friendName">' + o.fullname +'</div><div class="friendPoints">' + o.points + '</div></div>'
+						})
+						$("#friend-list").html(leader)
+					})
+				}
+
+			})
+		</script>
+	</body>
+</html>

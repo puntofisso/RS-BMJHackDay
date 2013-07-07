@@ -1,0 +1,184 @@
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<title>
+			FSO
+		</title>
+
+		<style>
+		@import url(style.css);
+		.bigContainer {background-color: #53b3d0}
+		</style>
+	</head>
+
+	<body>
+		<!--This container is the big field-->
+		<div class="bigContainer">
+			<!--Two big links are here-->
+			<a href="question.html" id="question"> Questions </a>
+			<a href="main.html" id="stats"> Stats </a>
+			<div class="bigBreak"></div>
+			<!--The questions and options are here-->
+			<div class = "container" id="questionContainer">
+			<div id="what">
+			<div id="actualQuestion"></div>
+			<ol id="answers"></ol>
+			
+		<!--	<button class="option">A</button>
+			<button class="option">B</button>
+			<button class="option">C</button>
+			<button class="option">D</button>
+			<button class="option">E</button> -->
+			</div>
+			<span id="feedback"></span>
+			<div id="buttons"></div>
+			<button id="skip">SKIP</button>
+		</div>
+			<!--the same score thingy from before, so it should update the same-->
+			<div class = "container">
+				<div class="stat" id="points">
+					<div class="box">80</div>
+				</div>
+				<div class="stat" id="percent">
+					<div class="box">71%</div>
+				</div>
+				<div class="stat" id="level">
+					<div class="box">Level 8</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--This container is the field on the right labelled friends-->
+				<div class="smallContainer">
+<div id="wrapper">
+			<div id="profilePic">
+			<img src="maskpic.png"> </img>
+			</div>
+			<div id="friend-list">
+			<div id="name"><p>Edward Jenner</p></div>
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+
+			<div class="friendBox">
+				<div class="friendName">Name</div>
+				<div class="friendPoints">0</div>
+			</div>
+		</div>
+			<div class="optionButton">Settings</br>Help</br>Log Out</div>
+		</div> </div>
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				API_URL = "http://172.16.63.151:8888/api/index.php/"
+
+				loadLeaderBoard()
+				//load user data
+				points = $("div#points .box")
+				percent = $("div#percent .box")
+				level  =  $("div#level .box")
+				loadUserDetails("edjenner")
+				questionLevel = 1
+				questionCat = 'all'
+				hashes = location.hash.split("#").splice(1)
+
+				if(hashes.length > 0){
+					questionLevel = hashes[0]
+				}
+				if(hashes.length > 1){
+					questionCat = hashes[1]
+				}
+
+				loadQuestionsForUser("edjenner", questionCat, questionLevel)
+				question = $("div#what")
+				container = $("div#questionContainer")
+				arrayOfQuestions = null
+				cumulativePoints = 0
+
+
+
+				function loadUserDetails(username){
+					$.getJSON(API_URL + "userstats/" + username, function(user){
+						points.text(user.points)
+						percent.text(user.percentcorrect * 100 + "%")
+						level.text(user.level)
+						cumulativePoints = parseInt(user.points)
+					})
+				}
+
+
+				function loadQuestionsForUser(username, category, questionLevel){
+					cat = "all"
+					if(category != ''){cat = category}
+					$.getJSON(API_URL + "questions/" + cat + "/" + username + "/" + questionLevel, function(data){
+						arrayOfQuestions = data
+						doQuestionShit(questionLevel)
+			
+					})
+				}
+				
+				function doQuestionShit(questionLevel){	
+					//do something with the first question
+					$("div#actualQuestion").html(arrayOfQuestions[0].question)
+					answers = ""
+					buttons = ""
+					$.each(arrayOfQuestions[0].answers, function(i, o){
+						answers += "<li class='answer'>" + o.option + "</li>"
+						buttons += "<button class='option' data-score='"+ o.score +"' data-points='"+ questionLevel +"'>" + (parseInt(i) + 1) + "</button>"
+					})
+					$("div#buttons").html(buttons)
+					$("ol#answers").html(answers)
+					arrayOfQuestions.shift()
+				}
+
+				feedback = $("span#feedback")
+				$(document).on("click", ".option",function(e){
+					feedback.fadeOut()
+					answer = $(this)
+					if (answer.attr("data-score") > 0){
+						cumulativePoints += parseInt(answer.attr("data-points"))
+						feedback.text("correct!!!!!!!WF@££$@£$@£")
+					}else{
+						feedback.text("incorrect")
+					}
+					feedback.fadeIn()
+					doQuestionShit(questionLevel)
+				})
+
+				$("#skip").on("click",function(){
+					arrayOfQuestions.shift()
+					console.log(arrayOfQuestions)
+					doQuestionShit(questionLevel)
+				})
+function loadLeaderBoard(){
+					jQuery.getJSON( "http://172.16.63.151:8888/api/index.php/leaderboard/", function(leaderboard){
+						leader = ''
+						$.each(leaderboard,function(i,o){
+							leader += '<div class="friendBox"><div class="friendName">' + o.fullname +'</div><div class="friendPoints">' + o.points + '</div></div>'
+						})
+						$("#friend-list").html(leader)
+					})
+				}
+
+
+			})
+		</script>
+	</body>
+</html>
