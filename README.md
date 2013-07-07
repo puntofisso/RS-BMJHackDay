@@ -6,7 +6,7 @@ by
 Giuseppe Sollazzo (@puntofisso)
 
 
-Instructions
+==Instructions==
 1. Create database (db/create.sql)
 2. Populate database with data coming from the OnExamination dataset, as provided by BMJ
 3. Website will use API under www/api, developed using http://toroweb.org
