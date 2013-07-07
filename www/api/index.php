@@ -64,18 +64,13 @@ class UserStatsHandler {
 }
 
 class QuestionsHandler {
-    function get($catname) {
+    function get($catname,$username) {
 
     	$query = "";
      	if ($catname == "all") {
-
-     		$query = "SELECT q.* from questions q where q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc LIMIT 0,10;";
-  			
-
-
+     		$query = "SELECT q.* from questions q where q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc;";
   		} else {
-  			$query = "SELECT q.* from questions q where q.FriendlyName='$catname' and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc LIMIT 0,10;";
-
+  			$query = "SELECT q.* from questions q where q.FriendlyName='$catname' and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc;";
   		}
   		$result = mySQLquery($query);
   		$out = array();
@@ -91,6 +86,7 @@ class QuestionsHandler {
 		 		$dom = new DOMDocument;
 				$dom->loadXML($xml);
 
+				$scoreIsPresent = FALSE;
 				// question
 				$qText = $dom->getElementsByTagName('qTxt');
 				$string = "";	
@@ -109,6 +105,10 @@ class QuestionsHandler {
 				foreach ($opts as $opt) {
 					$thisScore = array();
 					$thisScore['score'] = $opt->getAttribute('score');
+					
+					if ($thisScore['score'] <> "")
+						$scoreIsPresent = TRUE;
+
 					$optiontext = $opt->getElementsByTagName('oTxt');
 					$optionstring = "";
 					foreach ($optiontext as $text) {
@@ -125,10 +125,36 @@ class QuestionsHandler {
 				$thisout['answers'] = $optsArray;
 
 		 		//$thisout['xml'] = $row['XML'];
+		 		if (!$scoreIsPresent)
+		 			$thisout['flag'] = 'noscore';
+		 		else
+		 			$thisout['flag'] = 'score';
+
 		 		$out[] = $thisout;
 			}
 	    	echo json_encode($out);
 	    
+    }
+}
+
+
+class CategoriesHandler {
+    function get($count) {
+    	if ($count == "all") {
+    		$query = "SELECT FriendlyName, count(FriendlyName) c from questions group by FriendlyName";
+    	} else {
+    		$query = "SELECT FriendlyName, count(FriendlyName) c from questions group by FriendlyName having c>$count;";
+    	}
+     	
+      	$result = mySQLquery($query);
+      	$out = array();
+      	while($row = mysql_fetch_assoc( $result )) {
+      		$thisout = array();
+			$thisout['category'] = $row['FriendlyName'];
+			$thisout['count'] = $row['c'];
+			$out[] = $thisout;
+		}
+		echo json_encode($out);
     }
 }
 
@@ -139,7 +165,8 @@ Toro::serve(array(
     "/fso" => "FsoHandler",
     "/test" => "TestHandler",
     "/userstats/:string" => "UserStatsHandler",
-    "/questions/:string" => "QuestionsHandler",
+    "/questions/:string/:string" => "QuestionsHandler",
+    "/categories/:alpha" => "CategoriesHandler",
 ));
 
 ?>
