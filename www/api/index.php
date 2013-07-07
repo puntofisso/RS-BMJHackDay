@@ -24,12 +24,14 @@ function mySQLquery($query) {
 
 class RootHandler {
     function get() {
+      header('Access-Control-Allow-Origin: *');
       echo "BMJHack<br/>";
     }
 }
 
 class FsoHandler {
     function get() {
+      header('Access-Control-Allow-Origin: *');
       echo "Figuring Shit Out<br/>";
       echo "I do very little, but a lot of it<br/>";
     }
@@ -43,6 +45,7 @@ class TestHandler {
       	while($row = mysql_fetch_assoc( $result )) {
 			$out[] = $row['QID'];
 		}
+		header('Access-Control-Allow-Origin: *');
 		echo json_encode($out);
     }
 }
@@ -59,6 +62,7 @@ class UserStatsHandler {
 			$out['percentcorrect'] = $row['percentcorrect'];
 			$out['level'] = $row['level'];
 		}
+		header('Access-Control-Allow-Origin: *');
 		echo json_encode($out);
     }
 }
@@ -132,6 +136,7 @@ class QuestionsHandler {
 
 		 		$out[] = $thisout;
 			}
+			header('Access-Control-Allow-Origin: *');
 	    	echo json_encode($out);
 	    
     }
@@ -154,6 +159,29 @@ class CategoriesHandler {
 			$thisout['count'] = $row['c'];
 			$out[] = $thisout;
 		}
+		header('Access-Control-Allow-Origin: *');
+		echo json_encode($out);
+    }
+}
+
+class LeaderboardHandler {
+    function get($count) {
+    	$query = "SELECT points, username, fullname, level from users order by points desc";
+     	
+      	$result = mySQLquery($query);
+      	$out = array();
+      	$i = 0;
+      	while($row = mysql_fetch_assoc( $result )) {
+      		$i++;
+      		$thisout = array();
+			$thisout['position'] = $i;
+			$thisout['points'] = $row['points'];
+			$thisout['level'] = $row['level'];
+			$thisout['username'] = $row['username'];
+			$thisout['fullname'] = $row['fullname'];
+			$out[] = $thisout;
+		}
+		header('Access-Control-Allow-Origin: *');
 		echo json_encode($out);
     }
 }
@@ -167,6 +195,7 @@ Toro::serve(array(
     "/userstats/:string" => "UserStatsHandler",
     "/questions/:string/:string" => "QuestionsHandler",
     "/categories/:alpha" => "CategoriesHandler",
+    "/leaderboard" => "LeaderboardHandler",
 ));
 
 ?>
