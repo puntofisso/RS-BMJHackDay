@@ -34,6 +34,7 @@ class FsoHandler {
       header('Access-Control-Allow-Origin: *');
       echo "Figuring Shit Out<br/>";
       echo "I do very little, but a lot of it<br/>";
+      echo "This is just a proof of concept!!<br/>";
     }
 }
 
@@ -68,14 +69,32 @@ class UserStatsHandler {
 }
 
 class QuestionsHandler {
-    function get($catname,$username) {
+    function get($catname,$username,$level) {
+
+    	$limit = "";
+    	if ($level == 1) {
+    		$limit = "q.AVScore >= 0 and q.AVScore < 0.2";
+    	} else if ($level == 2) {
+			$limit = "q.AVScore >= 0.2 and q.AVScore < 0.4";
+    	} else if ($level == 3) {
+			$limit = "q.AVScore >= 0.4 and q.AVScore < 0.6";
+    	} else if ($level == 4) {
+			$limit = "q.AVScore >= 0.6 and q.AVScore < 0.8";
+    	} else if ($level == 5) {
+			$limit = "q.AVScore >= 0.8 and q.AVScore <= 1";
+    	} else if ($level == "all") {
+    		$limit = "q.AVScore >= 0 and q.AVScore <= 1";
+    	}
+    	else 
+    		exit;
 
     	$query = "";
      	if ($catname == "all") {
-     		$query = "SELECT q.* from questions q where q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc;";
+     		$query = "SELECT q.* from questions q where $limit and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc LIMIT 0,10;";
   		} else {
-  			$query = "SELECT q.* from questions q where q.FriendlyName='$catname' and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc;";
+  			$query = "SELECT q.* from questions q where $limit and q.FriendlyName='$catname' and q.qid not in (SELECT questionid from answeredquestions WHERE username='$username') order by q.AVScore asc LIMIT 0,10;";
   		}
+
   		$result = mySQLquery($query);
   		$out = array();
 
@@ -186,6 +205,24 @@ class LeaderboardHandler {
     }
 }
 
+class UserPointsHandler {
+    function get($username,$points) {
+    	$query = "UPDATE users SET points='$points' WHERE username='$username';";
+      	$result = mySQLquery($query);
+		header('Access-Control-Allow-Origin: *');
+		echo json_encode($result);
+    }
+}
+
+class UserLevelHandler {
+    function get($username,$level) {
+    	$query = "UPDATE users SET level='$level' WHERE username='$username';";
+      	$result = mySQLquery($query);
+		header('Access-Control-Allow-Origin: *');
+		echo json_encode($result);
+    }
+}
+
 /* Toro main list of endpoints */
 
 Toro::serve(array(
@@ -193,9 +230,11 @@ Toro::serve(array(
     "/fso" => "FsoHandler",
     "/test" => "TestHandler",
     "/userstats/:string" => "UserStatsHandler",
-    "/questions/:string/:string" => "QuestionsHandler",
+    "/questions/:string/:string/:alpha" => "QuestionsHandler",
     "/categories/:alpha" => "CategoriesHandler",
     "/leaderboard" => "LeaderboardHandler",
+    "/updateuserpoints/:string/:alpha" => "UserPointsHandler",
+    "/updateuserlevel/:string/:alpha" => "UserLevelHandler",
 ));
 
 ?>
